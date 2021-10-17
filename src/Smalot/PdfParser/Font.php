@@ -278,7 +278,9 @@ class Font extends PDFObject
                     $text .= '(';
                 }
 
-                $part = pack('H*', $part);
+                if (preg_match('/^[0-9a-f]+$/i', $part)) {
+                    $part = pack('H*', $part);
+                }
                 $text .= ($add_braces ? preg_replace('/\\\/s', '\\\\\\', $part) : $part);
 
                 if ($add_braces) {
