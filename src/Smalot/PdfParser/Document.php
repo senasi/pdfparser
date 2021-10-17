@@ -64,6 +64,11 @@ class Document
      */
     protected $details = null;
 
+    /**
+     * @var int|null
+     */
+    public static $getTextStartTimestamp = null;
+
     public function __construct()
     {
         $this->trailer = new Header([], $this);
@@ -246,6 +251,8 @@ class Document
      */
     public function getText(Page $page = null)
     {
+        self::$getTextStartTimestamp = time();
+
         $texts = [];
         $pages = $this->getPages();
 

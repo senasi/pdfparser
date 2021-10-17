@@ -287,6 +287,11 @@ class PDFObject
             $text = '';
 
             foreach ($commands as $command) {
+
+                if ((time() - Document::$getTextStartTimestamp) > 120) { // 2 minutes
+                    throw new \Exception('We are taking too long, probably recursion?');
+                }
+
                 switch ($command[self::OPERATOR]) {
                     case 'BMC':
                         if ('ReversedChars' == $command[self::COMMAND]) {
