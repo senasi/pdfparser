@@ -288,7 +288,7 @@ class PDFObject
 
             foreach ($commands as $command) {
 
-                if ((time() - Document::$getTextStartTimestamp) > 120) { // 2 minutes
+                if ((time() - Document::$getTextStartTimestamp) > 300) { // 5 minutes
                     throw new \Exception('We are taking too long, probably recursion?');
                 }
 
